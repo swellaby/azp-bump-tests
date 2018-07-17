@@ -1,0 +1,27 @@
+{
+    "name": "@swellaby/vsts-bump-tests",
+    "description": "functional tests for our vsts-bump module",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "lint": "eslint **/*.js",
+        "clean": "rimraf .testresults .testcontext",
+        "pretest": "npm run clean && ncp test/fixtures/ .testcontext/lib && ncp test/fixtures/ .testcontext/cli",
+        "test": "mocha --opts test/mocha.opts",
+        "target:remove": "npm r vsts-bump",
+        "pretarget:install": "npm run target:remove",
+        "target:install": "npm i --no-save vsts-bump",
+        "pretarget:install:file": "npm run target:remove",
+        "target:install:file": "npm i --no-save"
+    },
+    "devDependencies": {
+        "@swellaby/eslint-config": "^1.1.6",
+        "chai": "^4.1.2",
+        "eslint": "^5.1.0",
+        "mocha": "^5.2.0",
+        "ncp": "^2.0.0",
+        "rimraf": "^2.6.2",
+        "shelljs": "^0.8.2"
+    }
+}

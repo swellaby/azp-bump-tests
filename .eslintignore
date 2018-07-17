@@ -1,0 +1,4 @@
+.testresults/
+.testcontext/
+.vscode/
+node_modules/
