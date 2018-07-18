@@ -4,17 +4,17 @@ const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 
-const buildBumpedMessage = (oldVersion, newVersion, releaseType) => {
-    return `Bumped ${oldVersion} to ${newVersion} with type: ${releaseType}`;
+const buildBumpSummaryMessage = (numBumpedFiles, bumpType) => {
+    return `Bumped ${numBumpedFiles} task manifest file(s) using bump type ${bumpType}`;
 };
 
-const buildGulpTaskCommand = (taskName) => {
-    return `npm run gulp -- ${taskName}`;
+const buildBumpedFileResultMessage = (oldVersion, newVersion, file) => {
+    return `Bumped ${oldVersion} to ${newVersion} in ${file}`;
 };
 
-const runGulpTaskWithShelljs = (gulpTaskName) => {
-    const commandName = buildGulpTaskCommand(gulpTaskName);
-    return shell.exec(commandName, { silent: true });
+const runVstsBumpCli = (args, options, isSilent) => {
+    const command = `vsts-bump ${args} ${options}`;
+    return shell.exec(command, { silent: isSilent });
 };
 
 const getFileContents = (filePath) => {
@@ -22,15 +22,21 @@ const getFileContents = (filePath) => {
     return file;
 };
 
+const testContextRootDir = path.join(path.resolve('./'), '.testcontext/');
+const libTestContextDir = path.join(testContextRootDir, 'lib/');
+const cliTestContextDir = path.join(testContextRootDir, 'cli/');
+
 module.exports = {
     successfulReturnCode: 0,
-    testContextDir: path.join(path.resolve('./'), '.testcontext/'),
+    testContextRootDir: testContextRootDir,
+    libTestContextDir: libTestContextDir,
+    cliTestContextDir: cliTestContextDir,
     patchReleaseType: 'patch',
     minorReleaseType: 'minor',
     majorReleaseType: 'major',
-    buildBumpedMessage: buildBumpedMessage,
-    buildGulpTaskCommand: buildGulpTaskCommand,
-    runGulpTaskWithShelljs: runGulpTaskWithShelljs,
+    buildBumpSummaryMessage: buildBumpSummaryMessage,
+    buildBumpedFileResultMessage: buildBumpedFileResultMessage,
+    runVstsBumpCli: runVstsBumpCli,
     getFileContents: getFileContents,
     getTaskFromFile: (filePath) => JSON.parse(getFileContents(filePath))
 };
