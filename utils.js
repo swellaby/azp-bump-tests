@@ -12,7 +12,7 @@ const buildBumpedFileResultMessage = (oldVersion, newVersion, file) => {
     return `Bumped ${oldVersion} to ${newVersion} in ${file}`;
 };
 
-const runVstsBumpCli = (args, options, isSilent) => {
+const runVstsBumpCli = (args, options, isSilent = true) => {
     const command = `vsts-bump ${args} ${options}`;
     return shell.exec(command, { silent: isSilent });
 };
