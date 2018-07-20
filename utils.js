@@ -9,12 +9,26 @@ const buildBumpSummaryMessage = (numBumpedFiles, bumpType) => {
 };
 
 const buildBumpedFileResultMessage = (oldVersion, newVersion, file) => {
-    return `Bumped ${oldVersion} to ${newVersion} in ${file}`;
+    return `Bumped ${oldVersion} to ${newVersion} in ${file.replace(/\\/g, '/')}`;
+};
+
+const buildCliCommand = (args, options) => {
+    let command = 'vsts-bump';
+    if (options) {
+        command = `${command} ${options}`;
+    }
+
+    return `${command} ${args}`;
 };
 
 const runVstsBumpCli = (args, options, isSilent = true) => {
-    const command = `vsts-bump ${args} ${options}`;
+    const command = buildCliCommand(args, options);
     return shell.exec(command, { silent: isSilent });
+};
+
+const runVstsBumpCliWithCallback = (args, options, isSilent = true, callback) => {
+    const command = buildCliCommand(args, options);
+    return shell.exec(command, { silent: isSilent }, callback);
 };
 
 const getFileContents = (filePath) => {
@@ -22,21 +36,36 @@ const getFileContents = (filePath) => {
     return file;
 };
 
-const testContextRootDir = path.join(path.resolve('./'), '.testcontext/');
-const libTestContextDir = path.join(testContextRootDir, 'lib/');
-const cliTestContextDir = path.join(testContextRootDir, 'cli/');
+const testContextRootDir = '.testcontext';
+const libTestContextDir = 'lib';
+const cliTestContextDir = 'cli';
+const testContextRootDirPath = path.join(path.resolve('./'), testContextRootDir);
+const libTestContextDirPath = path.join(testContextRootDirPath, libTestContextDir);
+const cliTestContextDirPath = path.join(testContextRootDirPath, cliTestContextDir);
+
+const cliBaseErrorMessage = 'Fatal error encountered. Fatal error occurred while attempting to bump file. Details:';
+const invalidTaskFileErrorDetails = 'Encountered one or more invalid tasks. Task must represent version as an object ' +
+    'under the \'version\' key with Major, Minor, and Patch fields (that start with Uppercase letters)';
 
 module.exports = {
     successfulReturnCode: 0,
     testContextRootDir: testContextRootDir,
-    libTestContextDir: libTestContextDir,
-    cliTestContextDir: cliTestContextDir,
+    libTestContextRelativeDir: `${testContextRootDir}/${libTestContextDir}`,
+    cliTestContextRelativeDir: `${testContextRootDir}/${cliTestContextDir}`,
+    testContextRootDirPath: testContextRootDirPath,
+    libTestContextDirPath: libTestContextDirPath,
+    cliTestContextDirPath: cliTestContextDirPath,
     patchReleaseType: 'patch',
     minorReleaseType: 'minor',
     majorReleaseType: 'major',
+    defaultBumpType: 'patch',
     buildBumpSummaryMessage: buildBumpSummaryMessage,
     buildBumpedFileResultMessage: buildBumpedFileResultMessage,
     runVstsBumpCli: runVstsBumpCli,
+    runVstsBumpCliWithCallback: runVstsBumpCliWithCallback,
     getFileContents: getFileContents,
-    getTaskFromFile: (filePath) => JSON.parse(getFileContents(filePath))
+    getTaskFromFile: (filePath) => JSON.parse(getFileContents(filePath)),
+    cliBaseErrorMessage: cliBaseErrorMessage,
+    invalidTaskFileErrorDetails: invalidTaskFileErrorDetails,
+    buildExpectedCliErrorMessage: (errorMessageDetails) => `${cliBaseErrorMessage} ${errorMessageDetails}`,
 };
