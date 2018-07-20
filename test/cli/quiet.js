@@ -21,20 +21,16 @@ suite('quiet Suite:', () => {
 
     test('Should not display output when shorthand quiet option is set', () => {
         const args = [ `${targetDirectory}/task2.json` ];
-        const summaryMessage = utils.buildBumpSummaryMessage(1, utils.defaultBumpType);
-        const result = utils.runVstsBumpCli(args, '-q', false);
+        const result = utils.runVstsBumpCli(args, '-q');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         assert.deepEqual(result.code, utils.successfulReturnCode);
         assert.deepEqual(result.stdout, '');
-        assert.isFalse(result.stdout.includes(summaryMessage));
     });
 
     test('Should not display output when full quiet option is set', () => {
         const args = [ `${targetDirectory}/**/*.json` ];
-        const summaryMessage = utils.buildBumpSummaryMessage(1, utils.defaultBumpType);
-        const result = utils.runVstsBumpCli(args, '--quiet', false);
+        const result = utils.runVstsBumpCli(args, '--quiet');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         assert.deepEqual(result.stdout, '');
-        assert.isFalse(result.stdout.includes(summaryMessage));
     });
 });
