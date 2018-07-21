@@ -3,7 +3,7 @@
 const assert = require('chai').assert;
 const utils = require('../../utils');
 
-suite('errors Suite:', () => {
+suite('cli errors Suite:', () => {
     const expectedReturnCode = 1;
     const targetDirectory = `${utils.cliTestContextRelativeDir}/errors`;
 

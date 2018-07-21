@@ -3,7 +3,7 @@
 const assert = require('chai').assert;
 const utils = require('../../utils');
 
-suite('quiet Suite:', () => {
+suite('cli quiet Suite:', () => {
     const targetDirectory = `${utils.cliTestContextRelativeDir}/quiet`;
 
     test('Should display output by default', () => {
