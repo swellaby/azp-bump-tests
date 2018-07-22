@@ -1,7 +1,7 @@
 {
     "name": "@swellaby/vsts-bump-tests",
     "description": "functional tests for our vsts-bump module",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "private": true,
     "license": "MIT",
     "scripts": {
