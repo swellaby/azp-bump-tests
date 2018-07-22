@@ -3,7 +3,7 @@
 const assert = require('chai').assert;
 const utils = require('../../utils');
 
-suite('cli tasks Suite:', () => {
+suite('cli dirs Suite:', () => {
     const targetDirectoryName = 'tasks';
     const targetDirectory = `${utils.cliTestContextRelativeDir}/${targetDirectoryName}`;
     const targetDirectoryPath = `${utils.cliTestContextDirPath}/${targetDirectoryName}`;

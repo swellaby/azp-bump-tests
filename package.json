@@ -10,10 +10,10 @@
         "pretest": "npm run clean && mkdir .testcontext && ncp test/fixtures/ .testcontext/lib/ && ncp test/fixtures/ .testcontext/cli/",
         "test": "mocha --opts test/mocha.opts",
         "target:remove": "npm r vsts-bump",
+        "pretarget:install:latest": "npm run target:remove",
+        "target:install:latest": "npm i --no-save vsts-bump",
         "pretarget:install": "npm run target:remove",
-        "target:install": "npm i --no-save vsts-bump",
-        "pretarget:install:file": "npm run target:remove",
-        "target:install:file": "npm i --no-save"
+        "target:install": "npm i --no-save"
     },
     "devDependencies": {
         "@swellaby/eslint-config": "^1.1.6",
