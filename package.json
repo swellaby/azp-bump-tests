@@ -1,29 +1,31 @@
 {
-    "name": "@swellaby/vsts-bump-tests",
-    "description": "functional tests for our vsts-bump module",
-    "version": "1.0.0",
-    "private": true,
-    "license": "MIT",
-    "scripts": {
-        "lint": "eslint **/*.js",
-        "clean": "rimraf .testresults .testcontext",
-        "pretest": "npm run clean && mkdir .testcontext && ncp test/fixtures/ .testcontext/lib/ && ncp test/fixtures/ .testcontext/cli/",
-        "test": "mocha --opts test/mocha.opts",
-        "target:remove": "npm r vsts-bump",
-        "pretarget:install:latest": "npm run target:remove",
-        "target:install:latest": "npm i --no-save vsts-bump",
-        "pretarget:install": "npm run target:remove",
-        "target:install": "npm i --no-save"
-    },
-    "devDependencies": {
-        "@swellaby/eslint-config": "^1.1.6",
-        "chai": "^4.1.2",
-        "eslint": "^5.2.0",
-        "mocha": "^5.2.0",
-        "mocha-multi": "^1.0.1",
-        "ncp": "^2.0.0",
-        "rimraf": "^2.6.2",
-        "shelljs": "^0.8.2"
-    },
-    "dependencies": {}
+  "name": "@swellaby/vsts-bump-tests",
+  "description": "functional tests for our vsts-bump module",
+  "version": "1.0.1",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint **/*.js",
+    "clean": "rimraf .testresults .testcontext",
+    "pretest": "npm run clean && mkdir .testcontext && ncp test/fixtures/ .testcontext/lib/ && ncp test/fixtures/ .testcontext/cli/",
+    "test": "mocha --opts test/mocha.opts",
+    "target:remove": "npm r vsts-bump",
+    "pretarget:install:latest": "npm run target:remove",
+    "target:install:latest": "npm i --no-save vsts-bump",
+    "pretarget:install": "npm run target:remove",
+    "target:install": "npm i --no-save",
+    "dev:reset": "npm run clean && node -e \"require('rimraf').sync('node_modules');\" && npm run dev:setup",
+    "dev:setup": "npm i && npm run lint"
+  },
+  "devDependencies": {
+    "@swellaby/eslint-config": "^1.1.6",
+    "chai": "^4.2.0",
+    "eslint": "^5.13.0",
+    "mocha": "^5.2.0",
+    "mocha-multi": "^1.0.1",
+    "ncp": "^2.0.0",
+    "rimraf": "^2.6.3",
+    "shelljs": "^0.8.3"
+  },
+  "dependencies": {}
 }
