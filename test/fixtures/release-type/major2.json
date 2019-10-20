@@ -1,8 +1,8 @@
 {
   "id": "923e6d5c-0b14-462b-922e-813cbd2ef4cc",
-  "name": "2018vsts",
+  "name": "2018azp",
   "friendlyName": "Sample Task",
-  "description": "vsts",
+  "description": "azp",
   "author": "me",
   "helpMarkDown": "[]() Replace with markdown to show in help",
   "category": "Utility",

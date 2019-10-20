@@ -1,9 +1,9 @@
-# vsts-bump-tests
-Functional tests for [vsts-bump package][vsts-bump-url]  
+# azp-bump-tests
+Functional tests for [azp-bump package][azp-bump-url]  
 
 To run tests:
 ```sh
 npm test
 ```
 
-[vsts-bump-url]: https://www.npmjs.com/package/vsts-bump
+[azp-bump-url]: https://www.npmjs.com/package/azp-bump
