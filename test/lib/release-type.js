@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('chai').assert;
-const vstsBump = require('vsts-bump');
+const azpBump = require('azp-bump');
 const utils = require('../../utils');
 
 suite('lib release-type Suite:', () => {
@@ -13,7 +13,7 @@ suite('lib release-type Suite:', () => {
         const fileName = 'task.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        vstsBump.bumpTaskManifestFiles(args).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles(args).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpType, utils.patchReleaseType);
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
@@ -32,7 +32,7 @@ suite('lib release-type Suite:', () => {
         const fileName = 'patch.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        vstsBump.bumpTaskManifestFiles(args, { type: utils.patchReleaseType }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles(args, { type: utils.patchReleaseType }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpType, utils.patchReleaseType);
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
@@ -51,7 +51,7 @@ suite('lib release-type Suite:', () => {
         const fileName = 'minor.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        vstsBump.bumpTaskManifestFiles(args, { type: utils.minorReleaseType }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles(args, { type: utils.minorReleaseType }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpType, utils.minorReleaseType);
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
@@ -70,7 +70,7 @@ suite('lib release-type Suite:', () => {
         const fileName = 'major.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        vstsBump.bumpTaskManifestFiles(args, { type: utils.majorReleaseType }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles(args, { type: utils.majorReleaseType }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpType, utils.majorReleaseType);
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];

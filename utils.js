@@ -15,7 +15,7 @@ const buildBumpedFileResultMessage = (oldVersion, newVersion, file) => {
 };
 
 const buildCliCommand = (args, options) => {
-    let command = 'vsts-bump';
+    let command = 'azp-bump';
     if (options) {
         command = `${command} ${options}`;
     }
@@ -23,12 +23,12 @@ const buildCliCommand = (args, options) => {
     return `${command} ${args}`;
 };
 
-const runVstsBumpCli = (args, options, isSilent = true) => {
+const runAzpBumpCli = (args, options, isSilent = true) => {
     const command = buildCliCommand(args, options);
     return shell.exec(command, { silent: isSilent });
 };
 
-const runVstsBumpCliWithCallback = (args, options, isSilent = true, callback) => {
+const runAzpBumpCliWithCallback = (args, options, isSilent = true, callback) => {
     const command = buildCliCommand(args, options);
     return shell.exec(command, { silent: isSilent }, callback);
 };
@@ -51,25 +51,25 @@ const invalidTaskFileErrorDetails = 'Encountered one or more invalid tasks. Task
 
 module.exports = {
     successfulReturnCode: 0,
-    testContextRootDir: testContextRootDir,
+    testContextRootDir,
     libTestContextRelativeDir: `${testContextRootDir}/${libTestContextDir}`,
     cliTestContextRelativeDir: `${testContextRootDir}/${cliTestContextDir}`,
-    testContextRootDirPath: testContextRootDirPath,
-    libTestContextDirPath: libTestContextDirPath,
-    cliTestContextDirPath: cliTestContextDirPath,
+    testContextRootDirPath,
+    libTestContextDirPath,
+    cliTestContextDirPath,
     patchReleaseType: 'patch',
     minorReleaseType: 'minor',
     majorReleaseType: 'major',
     defaultBumpType: 'patch',
-    buildBumpSummaryMessage: buildBumpSummaryMessage,
-    buildBumpedFileResultMessage: buildBumpedFileResultMessage,
-    runVstsBumpCli: runVstsBumpCli,
-    runVstsBumpCliWithCallback: runVstsBumpCliWithCallback,
-    getFileContents: getFileContents,
+    buildBumpSummaryMessage,
+    buildBumpedFileResultMessage,
+    runAzpBumpCli,
+    runAzpBumpCliWithCallback,
+    getFileContents,
     getTaskFromFile: (filePath) => JSON.parse(getFileContents(filePath)),
-    cliBaseErrorMessage: cliBaseErrorMessage,
-    invalidTaskFileErrorDetails: invalidTaskFileErrorDetails,
+    cliBaseErrorMessage,
+    invalidTaskFileErrorDetails,
     buildExpectedCliErrorMessage: errorMessageDetails => `${cliBaseErrorMessage} ${errorMessageDetails}`,
     buildExpectedLibErrorMessage: errorMessageDetails => `${libBaseErrorMessage} ${errorMessageDetails}`,
-    normalizeDirectoryPaths: normalizeDirectoryPaths
+    normalizeDirectoryPaths
 };

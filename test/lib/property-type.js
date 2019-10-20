@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('chai').assert;
-const vstsBump = require('vsts-bump');
+const azpBump = require('azp-bump');
 const utils = require('../../utils');
 
 suite('lib property-type Suite:', () => {
@@ -13,7 +13,7 @@ suite('lib property-type Suite:', () => {
         const fileName = 'original-string.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        vstsBump.bumpTaskManifestFiles(args).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles(args).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);
@@ -31,7 +31,7 @@ suite('lib property-type Suite:', () => {
         const fileName = 'number.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        vstsBump.bumpTaskManifestFiles(args, { versionPropertyType: 'number' }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles(args, { versionPropertyType: 'number' }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);
@@ -49,7 +49,7 @@ suite('lib property-type Suite:', () => {
         const fileName = 'string.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        vstsBump.bumpTaskManifestFiles(args, { versionPropertyType: 'string' }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles(args, { versionPropertyType: 'string' }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);

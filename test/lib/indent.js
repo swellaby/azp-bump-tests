@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('chai').assert;
-const vstsBump = require('vsts-bump');
+const azpBump = require('azp-bump');
 const utils = require('../../utils');
 
 suite('lib indent Suite:', () => {
@@ -14,7 +14,7 @@ suite('lib indent Suite:', () => {
         const fileName = 'task.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        vstsBump.bumpTaskManifestFiles(args).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles(args).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);
@@ -31,7 +31,7 @@ suite('lib indent Suite:', () => {
     test('Should set indent to tab when t specified for indent', done => {
         const fileName = 'tab.json';
         const file = `${targetDirectory}/${fileName}`;
-        vstsBump.bumpTaskManifestFiles([ file ], { indent: 't' }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles([ file ], { indent: 't' }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);
@@ -47,7 +47,7 @@ suite('lib indent Suite:', () => {
     test('Should set indent to tab when tab specified for indent', done => {
         const fileName = 'tab2.json';
         const file = `${targetDirectory}/${fileName}`;
-        vstsBump.bumpTaskManifestFiles([ file ], { indent: 'tab' }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles([ file ], { indent: 'tab' }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);
@@ -63,7 +63,7 @@ suite('lib indent Suite:', () => {
     test('Should set indent to tab when tab character specified for indent', done => {
         const fileName = 'tab3.json';
         const file = `${targetDirectory}/${fileName}`;
-        vstsBump.bumpTaskManifestFiles([ file ], { indent: '\t' }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles([ file ], { indent: '\t' }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);
@@ -79,7 +79,7 @@ suite('lib indent Suite:', () => {
     test('Should set indent to two spaces when 2 specified for indent', done => {
         const fileName = 'twospace.json';
         const file = `${targetDirectory}/${fileName}`;
-        vstsBump.bumpTaskManifestFiles([ file ], { indent: 2 }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles([ file ], { indent: 2 }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);
@@ -95,7 +95,7 @@ suite('lib indent Suite:', () => {
     test('Should set indent to four spaces when 4 specified for indent', done => {
         const fileName = 'fourspace.json';
         const file = `${targetDirectory}/${fileName}`;
-        vstsBump.bumpTaskManifestFiles([ file ], { indent: 4 }).then(bumpResult => {
+        azpBump.bumpTaskManifestFiles([ file ], { indent: 4 }).then(bumpResult => {
             assert.deepEqual(bumpResult.bumpedFiles.length, 1);
             const bumpedFileResult = bumpResult.bumpedFiles[0];
             assert.deepEqual(bumpedFileResult.filePath, file);

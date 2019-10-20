@@ -12,7 +12,7 @@ suite('cli release-type Suite:', () => {
         const fileName = 'task.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args);
+        const result = utils.runAzpBumpCli(args);
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);
@@ -24,7 +24,7 @@ suite('cli release-type Suite:', () => {
         const fileName = 'patch.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '-t patch');
+        const result = utils.runAzpBumpCli(args, '-t patch');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);
@@ -36,7 +36,7 @@ suite('cli release-type Suite:', () => {
         const fileName = 'patch2.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '--type patch');
+        const result = utils.runAzpBumpCli(args, '--type patch');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);
@@ -48,7 +48,7 @@ suite('cli release-type Suite:', () => {
         const fileName = 'minor.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '-t minor');
+        const result = utils.runAzpBumpCli(args, '-t minor');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);
@@ -60,7 +60,7 @@ suite('cli release-type Suite:', () => {
         const fileName = 'minor2.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '--type minor');
+        const result = utils.runAzpBumpCli(args, '--type minor');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);
@@ -72,7 +72,7 @@ suite('cli release-type Suite:', () => {
         const fileName = 'major.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '-t major');
+        const result = utils.runAzpBumpCli(args, '-t major');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 2);
@@ -84,7 +84,7 @@ suite('cli release-type Suite:', () => {
         const fileName = 'major2.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '--type major');
+        const result = utils.runAzpBumpCli(args, '--type major');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 2);

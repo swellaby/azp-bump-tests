@@ -10,7 +10,7 @@ suite('cli dirs Suite:', () => {
 
     test('Should correctly bump multiple tasks when nested in directories', () => {
         const args = `${targetDirectory}/**/task.json`;
-        const result = utils.runVstsBumpCli(args);
+        const result = utils.runAzpBumpCli(args);
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const barBumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/bar/task.json`);
         const fooBumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/foo/task.json`);
@@ -26,7 +26,7 @@ suite('cli dirs Suite:', () => {
         const fileName = 'task.json';
         const file = `${utils.cliTestContextRelativeDir}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args);
+        const result = utils.runAzpBumpCli(args);
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${utils.cliTestContextDirPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);

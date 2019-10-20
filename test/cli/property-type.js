@@ -12,7 +12,7 @@ suite('cli property-type Suite:', () => {
         const fileName = 'original-string.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args);
+        const result = utils.runAzpBumpCli(args);
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);
@@ -24,7 +24,7 @@ suite('cli property-type Suite:', () => {
         const fileName = 'number.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '-p number');
+        const result = utils.runAzpBumpCli(args, '-p number');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);
@@ -36,7 +36,7 @@ suite('cli property-type Suite:', () => {
         const fileName = 'number2.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '--version-property-type number');
+        const result = utils.runAzpBumpCli(args, '--version-property-type number');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, 0);
@@ -48,7 +48,7 @@ suite('cli property-type Suite:', () => {
         const fileName = 'string.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '-p string');
+        const result = utils.runAzpBumpCli(args, '-p string');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, '0');
@@ -60,7 +60,7 @@ suite('cli property-type Suite:', () => {
         const fileName = 'string2.json';
         const file = `${targetDirectory}/${fileName}`;
         const args = [ file ];
-        const result = utils.runVstsBumpCli(args, '--version-property-type string');
+        const result = utils.runAzpBumpCli(args, '--version-property-type string');
         assert.deepEqual(result.code, utils.successfulReturnCode);
         const bumpedTask = utils.getTaskFromFile(`${targetDirectoryPath}/${fileName}`);
         assert.deepEqual(bumpedTask.version.Major, '0');
