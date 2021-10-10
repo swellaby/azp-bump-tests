@@ -20,7 +20,7 @@
   "devDependencies": {
     "@swellaby/eslint-config": "^2.0.0",
     "chai": "^4.2.0",
-    "eslint": "^7.0.0",
+    "eslint": "^8.0.0",
     "mocha": "^9.0.0",
     "mocha-multi-reporters": "^1.1.7",
     "ncp": "^2.0.0",
